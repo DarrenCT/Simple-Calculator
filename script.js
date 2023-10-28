@@ -39,7 +39,7 @@ class Calculator{
 //execute operation
     compute(){
         let computation
-        const prev = aparseFloat(this.previousOperand)
+        const prev = parseFloat(this.previousOperand)
         const current = parseFloat(this.currentOperand)
         //don't execute if no values entered
         if(isNaN(prev) || isNaN(current)) return
@@ -56,7 +56,12 @@ class Calculator{
             case '÷':
                 computation = prev / current
                 break
+            default:
+                return
         }
+        this.currentOperand = computation
+        this.operation = undefined
+        this.previousOperand = ''
     }
 
     updateDisplay(){
@@ -84,7 +89,7 @@ operationButtons.forEach(button => {
 })
 //when the equal button is clicked, the operation button is added
 equalsButton.addEventListener('click', button => {
-    calculator.compute
-    calculator.updateDisplay
+    calculator.compute()
+    calculator.updateDisplay()
 })
 
